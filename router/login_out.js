@@ -23,7 +23,7 @@ router.post('/call_user', (req, res) => {
     const cpID = req.body.cpID;
 
     if(conID && pw && cpID){
-        connection.query('SELECT * FROM g_consultant WHERE conID=? and conPW=? and cpID=?',[conID,pw,cpID],function(error, result){
+        connection.query('SELECT * FROM LC_consultant WHERE conID=? and conPW=? and cpID=?',[conID,pw,cpID],function(error, result){
             if(error) throw error;
             if(result.length>0){//로그인 성공
                 //session 정보 저장
@@ -101,7 +101,7 @@ router.get('/create',function(req,res){
 })
 
 router.post('/create',(req,res)=>{
-    const sql = "INSERT INTO g_consultant SET ?"
+    const sql = "INSERT INTO LC_consultant SET ?"
 
     connection.query(sql,req.body,(err,result,field)=>{
         if(err) throw err;
