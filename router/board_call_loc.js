@@ -302,17 +302,20 @@ router.get('/auth', (req, res) => {
 
 // 위도, 경도 받기
 router.post('/call_loc/message/:id/locsubmit', (req, res)=>{
-    console.log(req.body);
-    const sql = "UPDATE LC_call_loc SET sLat = ?, sLong = ?, sAddr = ? WHERE userID = ?";
-    connection.query(sql,[req.body.lat, req.body.lon, req.body.loc, req.params.id],(err,result,fields)=>{
-        if(err) throw err;
-    })
+    //정보들 받아와서 insert 진행해야함
+    connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
+        const sql = "INSERT INTO LC_call_cam (userID, cPhone, conID, cpID, sLat, sLong, sAddr, loc_exp ) VALUES ?";
+        const value = [[req.params.id,result[0].cPhone,result[0].conID,result[0].cpID,req.body.lat,req.body.lon,req.body.loc,req.body.text]];
+        connection.query(sql,[value], (err,result,fields)=>{
+            if(err) throw err;
+        })
+    });
 });
 
 // 이미지 받기 
 router.post('/call_loc/message/:id/imgsubmit', (req, res)=>{
     console.log(req.body.dataUrl);
-    const sql = "UPDATE LC_call_loc SET imgUrl = ?, imgExplain = ? WHERE userID = ?";
+    const sql = "UPDATE LC_call_loc SET loc_img = ?, loc_img_exp = ? WHERE userID = ?";
     connection.query(sql,[req.body.dataUrl, req.body.text, req.params.id],(err,result,fields)=>{
         if(err) throw err;
         // res.redirect('/call');//500 내부서버 오류 해결
