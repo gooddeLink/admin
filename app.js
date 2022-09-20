@@ -3,7 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 // const boardRouter = require('./router/board.js');//require이용하여 모듈을 가지고 옴, 페이지 라우터
 const board_call_user_Router = require('./router/board_call_user.js');//require이용하여 모듈을 가지고 옴, user라우터
-const board_call_Router = require('./router/board_call.js');//require이용하여 모듈을 가지고 옴, call라우터
+const board_call_loc_Router = require('./router/board_call_loc.js');//require이용하여 모듈을 가지고 옴, call라우터
 const board_call_cam_Router = require('./router/board_call_cam.js');//require이용하여 모듈을 가지고 옴, call_cam라우터
 const board_com_Router = require('./router/board_com.js');//require이용하여 모듈을 가지고 옴, call라우터
 const board_cons_Router = require('./router/board_cons.js');//require이용하여 모듈을 가지고 옴, call라우터
@@ -55,8 +55,8 @@ app.use(expressSession({
 //라우터 연결
 // app.use(boardRouter);
 app.use(board_call_user_Router);
-// app.use(board_call_Router);
-// app.use(board_call_cam_Router);
+app.use(board_call_loc_Router);
+app.use(board_call_cam_Router);
 app.use(board_com_Router);
 app.use(board_cons_Router);
 app.use(board_log_Router);
