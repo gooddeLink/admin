@@ -55,8 +55,8 @@ app.use(expressSession({
 //라우터 연결
 // app.use(boardRouter);
 app.use(board_call_user_Router);
-// app.use(board_call_Router);
-// app.use(board_call_cam_Router);
+app.use(board_call_Router);
+app.use(board_call_cam_Router);
 app.use(board_com_Router);
 app.use(board_cons_Router);
 app.use(board_log_Router);
