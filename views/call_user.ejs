@@ -199,8 +199,8 @@
                                         </i>
                                     </div> -->
                                     <div>
-                                        <p style="font-size: 1.8rem;font-weight: 500;  margin-bottom: 0;">Location</p>
-                                        <div class="page-title-subheading">Location DATA LIST</div>
+                                        <p style="font-size: 1.8rem;font-weight: 500;  margin-bottom: 0;">USER</p>
+                                        <div class="page-title-subheading">User LIST</div>
                                     </div>
                                 </div>
                                 <div class="page-title-actions">
@@ -216,7 +216,7 @@
                                             Filter
                                         </button> -->
                                         <% if (locals.filter_status === "show") {%>
-                                            <form class="" action="/call/filter" method="post" style="display: flex;">
+                                            <form class="" action="/call_user/filter" method="post" style="display: flex;">
                                                 <div class="position-relative row form-check">
                                                     <select name="conID" id="exampleSelect" class="form-control">
                                                         <option value="<%= locals.filter_cons_name %>">now: <%= locals.filter_cons_name %></option>
@@ -278,17 +278,17 @@
                         <div class="row" style="display: flex; justify-content: center; align-items: center;">
                             <div class="col-lg-6">
                                 <div class="main-card mb-3 card">
-                                    <div class="card-body"><h5 class="card-title">All the calls</h5>
+                                    <div class="card-body"><h5 class="card-title">All the users</h5>
                                         <table class="mb-0 table table-hover">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>callID</th>
+                                                <th>userID</th>
                                                 <th>cPhone</th>
                                                 <!-- <th>S Lat</th>
                                                 <th>S Long</th> -->
-                                                <th>S Addr</th>
-                                                <th>E Addr</th>
+                                                <!-- <th>S Addr</th>
+                                                <th>E Addr</th> -->
                                                 <th>Status</th>
                                                 <th>conID(상담원)</th>
                                                 <th>cpID(회사)</th>
@@ -298,12 +298,12 @@
                                             <tbody>
                                                 <% let i =0; %>
                                                 <% call.forEach(function(value){ %>
-                                            <tr class="item_num" onclick="location.href='/call/<%= value.callID %>'; getEdit();">
+                                            <tr class="item_num" onclick="location.href='/call_user/<%= value.callID %>'; getEdit();">
                                                 <th scope="row"><%= ++i %></th>
                                                 <td><%= value.callID %></td>
                                                 <td class="name_num"><%= value.cPhone %></td>
-                                                <td><%= value.sAddr %></td>
-                                                <td><%= value.eAddr %></td>
+                                                <!-- <td><%= value.sAddr %></td>
+                                                <td><%= value.eAddr %></td> -->
                                                 <td><%= value.status %></td>
                                                 <td><%= value.conID %></td>
                                                 <td><%= value.cpID %></td>
@@ -342,15 +342,15 @@
                                             <h5 class="card-title" style="font-size: 1.5rem; margin-top: 5px;">Create new</h5>
                                         </div>
                                         <!-- new call create -->
-                                        <form class="" action="/call/create" method="post" >
+                                        <form class="" action="/call_user/create" method="post" >
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>cPhone</label>
                                                 <input name="cPhone" id="exampleEmail11"  type="text" class="form-control">
                                             </div>
-                                            <div class="position-relative form-group">
+                                            <!-- <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>E Addr</label>
                                                 <input name="eAddr" id="exampleEmail11"  type="text" class="form-control">
-                                            </div>
+                                            </div> -->
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>Status</label>
                                                 <select name="status" id="exampleSelect" class="form-control">
@@ -394,7 +394,7 @@
                                             <h5 class="card-title" style="font-size: 1.5rem; margin-top: 5px;">Edit</h5>
                                         </div>
                                         <!-- 메세지 보내는 폼 -->
-                                        <form action="/call/message/<%= call_data[0].callID %>" method="post">
+                                        <form action="/call_user/message/<%= call_data[0].callID %>" method="post">
                                             <div class="position-relative row form-check">
                                                 <div class="col-sm-10 offset-sm-2">
                                                     <button class="btn btn-success" style="width:440px; float:right;">
@@ -413,21 +413,21 @@
                                                 <input name="cPhone" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].cPhone %>">
                                             </div>
                                             <div class="position-relative form-group" style="display:none;">
-                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>callID</label>
+                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>userID</label>
                                                 <input name="callID" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].callID %>" readonly>
                                             </div>
                                         </form>
                                         <!-- 고객 정보 update 하는 폼 -->
-                                        <form class="" action="/call/update/<%= call_data[0].callID %>" method="post" >
+                                        <form class="" action="/call_user/update/<%= call_data[0].callID %>" method="post" >
                                             <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>callID</label>
+                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>userID</label>
                                                 <input name="callID" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].callID %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>cPhone</label>
                                                 <input name="cPhone" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].cPhone %>">
                                             </div>
-                                            <div class="position-relative form-group">
+                                            <!-- <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">S Lat</label>
                                                 <input name="sLat" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].sLat %>">
                                             </div>
@@ -442,7 +442,7 @@
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>E Addr</label>
                                                 <input name="eAddr" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].eAddr %>">
-                                            </div>
+                                            </div> -->
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>Status</label>
                                                 <select name="status" id="exampleSelect" class="form-control" >
@@ -464,14 +464,14 @@
                                                 <label for="exampleEmail11" class="">addDate</label>
                                                 <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].addDate %>" readonly>
                                             </div>
-                                            <div class="position-relative form-group">
+                                            <!-- <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">imgExplain</label>
                                                 <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].imgExplain %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">img</label>
                                                 <img src = <%= call_data[0].imgUrl %> style = "width:440px; ">
-                                            </div>
+                                            </div> -->
                                             <div class="position-relative row form-check">
                                                 <div class="col-sm-10 offset-sm-2">
                                                     <button class="btn btn-secondary" style="width:440px; float:right;" onclick="getSave()">Submit</button>
@@ -480,7 +480,7 @@
                                         </form>
                                         <div class="position-relative row form-check">
                                             <div class="col-sm-10 offset-sm-2">
-                                                <button class="btn btn-danger" style="width:440px; float:right;" onclick="location.href='/call/delete/<%= call_data[0].callID %>'" >
+                                                <button class="btn btn-danger" style="width:440px; float:right;" onclick="location.href='/call_user/delete/<%= call_data[0].callID %>'" >
                                                     Delete 
                                                 </button>
                                             </div>
