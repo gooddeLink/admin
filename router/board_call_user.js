@@ -55,7 +55,7 @@ router.get('/call_user', (req, res) => {
                         call_cons_d = result;
                         res.render('call_user',{ 
                             accessor : user, 
-                            call:call_d,
+                            c_user:call_d,
                             status: "hide",
                             call_cons_d: call_cons_d,
                             filter_status:"show",//필터기능 노출 여부
@@ -79,7 +79,7 @@ router.get('/call_user', (req, res) => {
                         call_cons_d = result;
                         res.render('call_user',{ 
                             accessor : user, 
-                            call:call_d,
+                            c_user:call_d,
                             status: "hide",
                             call_cons_d: call_cons_d,
                             filter_status:"show",
@@ -99,7 +99,7 @@ router.get('/call_user', (req, res) => {
                     call_cons_d = result;
                     res.render('call_user',{ 
                         accessor : user, 
-                        call:call_d,
+                        c_user:call_d,
                         status: "hide",
                         call_cons_d: call_cons_d,
                         filter_status:"show",//필터기능 노출 여부
@@ -116,7 +116,7 @@ router.get('/call_user', (req, res) => {
                     call_cons_d = result;
                     res.render('call_user',{ 
                         accessor : user, 
-                        call:call_d,
+                        c_user:call_d,
                         status: "hide",
                         call_cons_d: call_cons_d,
                         filter_status:"show",
@@ -135,7 +135,7 @@ router.get('/call_user', (req, res) => {
                 call_d =result;
                 res.render('call_user',{ 
                     accessor : user, 
-                    call:result,
+                    c_user:result,
                     status: "hide",
                     filter_status:"hide",
                 });  
@@ -148,7 +148,7 @@ router.get('/call_user', (req, res) => {
 //-call 추가
 router.post('/call_user/create',(req,res)=>{
     connection.query('SELECT SUBSTR(MD5(RAND()),1,8) AS RandomString', (err, result, fields)=>{
-        req.body.callID = result[0].RandomString;
+        req.body.userID = result[0].RandomString;
         const sql = "INSERT INTO LC_user SET ? "
 
         connection.query(sql,req.body, (err,result,fields)=>{
@@ -169,7 +169,7 @@ router.get('/call_user/:id',(req,res)=>{
         //filer하는 버튼 노출 때문에 if문 사용
         if(user.AUTH === 1 || user.AUTH === 2 ){
             res.render('call_user',{
-                call:call_d,
+                c_user:call_d,
                 accessor : user,
                 call_data: result,
                 status:"show",
@@ -179,7 +179,7 @@ router.get('/call_user/:id',(req,res)=>{
             });
         }else{
             res.render('call_user',{
-                call:call_d,
+                c_user:call_d,
                 accessor : user,
                 call_data: result,
                 status:"show",
@@ -220,7 +220,7 @@ router.post('/call_user/filter',(req,res)=>{
             connection.query(sql1, function(err,result,fields){
                 call_d = result;//모든 정보를 보여줌
                 res.render('call_user',{
-                    call:call_d,
+                    c_user:call_d,
                     accessor : user,
                     // call_data: result,
                     status:"hide",
@@ -237,7 +237,7 @@ router.post('/call_user/filter',(req,res)=>{
                 // console.log(req.body.conID);
                 call_d = result;//해당 conID 정보만 보이게 함
                 res.render('call_user',{
-                    call:call_d,
+                    c_user:call_d,
                     accessor : user,
                     // call_data: result,
                     status:"hide",
@@ -255,7 +255,7 @@ router.post('/call_user/filter',(req,res)=>{
             connection.query(sql2, user.CP,function(err,result,fields){
                 call_d = result;//해당 회사 정보만 보이게 함
                 res.render('call_user',{
-                    call:call_d,
+                    c_user:call_d,
                     accessor : user,
                     // call_data: result,
                     status:"hide",
@@ -271,7 +271,7 @@ router.post('/call_user/filter',(req,res)=>{
             // console.log(req.body.conID);
             call_d = result;//해당 conID 정보만 보이게 함
             res.render('call_user',{
-                call:call_d,
+                c_user:call_d,
                 accessor : user,
                 // call_data: result,
                 status:"hide",

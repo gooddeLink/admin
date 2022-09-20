@@ -15,7 +15,7 @@ module.exports = {
             // const { tel } = req.body;
             // var tel = "01046141099";
             var tel = req.body.cPhone;
-            var callID = req.body.callID;
+            var userID = req.body.userID;
             // const user_phone_number = tel.split("-").join(""); // SMS를 수신할 전화번호
             const user_phone_number = tel; // SMS를 수신할 전화번호
             // const verificationCode = createRandomNumber(6); // 인증 코드 (6자리 숫자)
@@ -63,7 +63,7 @@ module.exports = {
                 countryCode: "82",
                 from: sens_call_number,
                 // content: `인증번호는 [${verificationCode}] 입니다.`,
-                content: `${sens_user_url}/${callID}`,
+                content: `${sens_user_url}/${userID}`,
                 messages: [{ to: `${user_phone_number}`}],
                 },
             });
@@ -78,7 +78,7 @@ module.exports = {
             // })
             return res.send(`<script>
                                 alert('${user_phone_number} 메세지 전송 성공');
-                                location.href='/call';
+                                location.href='/call_user';
                                 //status 2로 변환 필요
                             </script>`
                             );
@@ -88,7 +88,7 @@ module.exports = {
             // return res.status(404).json({ message: "SMS not sent" });
             return res.send(`<script>
                                 alert('${user_phone_number} 메세지 전송 실패');
-                                location.href='/call';
+                                location.href='/call_user';
                             </script>`
                             );
         }
