@@ -304,7 +304,7 @@ router.get('/auth', (req, res) => {
 router.post('/call_loc/message/:id/locsubmit', (req, res)=>{
     //정보들 받아와서 insert 진행해야함
     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
-        const sql = "INSERT INTO LC_call_cam (userID, cPhone, conID, cpID, sLat, sLong, sAddr, loc_exp ) VALUES ?";
+        const sql = "INSERT INTO LC_call_loc (userID, cPhone, conID, cpID, sLat, sLong, sAddr, loc_exp ) VALUES ?";
         const value = [[req.params.id,result[0].cPhone,result[0].conID,result[0].cpID,req.body.lat,req.body.lon,req.body.loc,req.body.text]];
         connection.query(sql,[value], (err,result,fields)=>{
             if(err) throw err;
