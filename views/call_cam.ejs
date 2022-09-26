@@ -393,7 +393,7 @@
                                             </button>
                                             <h5 class="card-title" style="font-size: 1.5rem; margin-top: 5px;">Edit</h5>
                                         </div>
-                                        
+
                                         <!-- 고객 정보 update 하는 폼 -->
                                         <form class="" action="/call_cam/update/<%= call_data[0].userID %>" method="post" >
                                             <div class="position-relative form-group">
@@ -422,7 +422,7 @@
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">locExplain</label>
-                                                <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].cam_exp %>" readonly>
+                                                <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].loc_exp %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">conID(상담원)</label>
@@ -438,11 +438,11 @@
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">imgExplain</label>
-                                                <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].cam_img_exp %>" readonly>
+                                                <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].loc_img_exp %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">img</label>
-                                                <img src = <%= call_data[0].cam_img %> style = "width:440px; ">
+                                                <img src = <%= call_data[0].loc_img %> style = "width:440px; ">
                                             </div>
                                             <div class="position-relative row form-check">
                                                 <div class="col-sm-10 offset-sm-2">

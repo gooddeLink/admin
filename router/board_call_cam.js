@@ -303,8 +303,8 @@ router.get('/auth', (req, res) => {
 // 위도, 경도 받기
 router.post('/call_cam/message/:id/locsubmit', (req, res)=>{
     console.log(req.body);
-    const sql = "UPDATE LC_call_cam SET sLat = ?, sLong = ?, sAddr = ? WHERE userID = ?";
-    connection.query(sql,[req.body.lat, req.body.lon, req.body.loc, req.params.id],(err,result,fields)=>{
+    const sql = "UPDATE LC_call_cam SET sLat = ?, sLong = ?, sAddr = ?, loc_exp = ? WHERE userID = ?";
+    connection.query(sql,[req.body.lat, req.body.lon, req.body.loc, req.body.text, req.params.id],(err,result,fields)=>{
         if(err) throw err;
 
         //axios.get('http://localhost:5000/call');
@@ -332,7 +332,7 @@ router.post('/call_cam/message/:id/locsubmit', (req, res)=>{
 router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
     console.log(req.body.dataUrl);
     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
-        const sql = "INSERT INTO LC_call_cam (userID, cPhone, conID, cpID, cam_img, cam_img_exp) VALUES ?";
+        const sql = "INSERT INTO LC_call_cam (userID, cPhone, conID, cpID, loc_img, loc_img_exp) VALUES ?";
         const value = [[req.params.id, result[0].cPhone, result[0].conID, result[0].cpID, req.body.dataUrl, req.body.text]]
         connection.query(sql,[value],(err,result,fields)=>{
             if(err) throw err;
@@ -343,7 +343,7 @@ router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
 
 router.post('/call_cam/message/:id/textsubmit', (req, res)=>{
     console.log(req.body.text);
-    const sql = "UPDATE LC_call_cam SET cam_exp = ? WHERE userID = ?";
+    const sql = "UPDATE LC_call_cam SET loc_exp = ? WHERE userID = ?";
     connection.query(sql,[req.body.text, req.params.id],(err,result,fields)=>{
         if(err) throw err;
         // res.redirect('/call');//500 내부서버 오류 해결
