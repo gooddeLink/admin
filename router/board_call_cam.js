@@ -308,9 +308,11 @@ router.post('/call_cam/message/:id/locsubmit', (req, res)=>{
         if(err) throw err;
 
         //axios.get('http://localhost:5000/call');
-        // res.redirect('/call'); //랜더링 문제 해결해야 함!
+         res.redirect('/call'); //랜더링 문제 해결해야 함!
 
     })
+    
+    // res.redirect('/call_cam');//500 내부서버 오류 해결
 });
 
 // //data 받기
@@ -336,7 +338,8 @@ router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
         const value = [[req.params.id, result[0].cPhone, result[0].conID, result[0].cpID, req.body.dataUrl, req.body.text]]
         connection.query(sql,[value],(err,result,fields)=>{
             if(err) throw err;
-            // res.redirect('/call');//500 내부서버 오류 해결
+            
+            res.redirect('/call_cam');//500 내부서버 오류 해결
         })
     });
 });
