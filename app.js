@@ -74,9 +74,7 @@ server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-const webServer = app.listen(app.get(5050),()=>{
-
-})
+const webServer = app.listen(app.get(5050),()=>{})
 
 webSocket(webServer);
 
