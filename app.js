@@ -10,8 +10,7 @@ const board_cons_Router = require('./router/board_cons.js');//require이용하�
 const board_log_Router = require('./router/login_out.js');//로그인 라우터
 const bodyParser = require('body-parser');//body를 parsing해주는 미들웨어
 const expressSession=require('express-session');//session 사용할때 필요
-
-
+const webSocket = require('./router/socket.js');
 
 //mysql연동
 const mysql = require('mysql');
@@ -22,7 +21,6 @@ const app = express();
 const server = http.createServer(app);
 //const hostname = '13.125.138.249';
 const port = 3010;
-//const port = 5000;
 
 // axios -> npm i cors -> 클라이언트 접근 허용
 const cors = require('cors')
@@ -76,11 +74,20 @@ server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
+
+const webServer = app.listen(app.get(5050),()=>{
+})
+
+webSocket(webServer);
+
+//웹 소켓
+
 // const WebSocket = require('ws');
 
 // const socket = new WebSocket.Server({
 //   port : 5050
 // })
+
 // socket.on('connection', (ws, req)=>{
 //   ws.on('message',(msg)=>{
 //     console.log('유저가 보낸 거 : '+ msg);
@@ -89,6 +96,7 @@ server.listen(port, () => {
 //     if(ws.readyState!=ws.OPEN){
 //       return;
 //     }
-//     // ws.send("서버에서 클라이언트로 메시지를 보냅니다.");
+//     ws.send("서버에서 클라이언트로 메시지를 보냅니다.");
 //   },3000);
-// // })
+// })
+
