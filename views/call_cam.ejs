@@ -526,6 +526,10 @@
             }
         }
     }
+    let socket = new WebSocket("ws://localhost:5050");
+    socket.onmessage = function(event){
+        alert("insert 되었습니다!");
+    }
     </script>
 
 <script type="text/javascript" src="/scripts/main.js"></script>
