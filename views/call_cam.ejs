@@ -26,6 +26,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/create_new.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 </head>
 
 <body style="overflow-x: hidden;">
@@ -527,10 +529,15 @@
             }
         }
     }
-    
+    //socket 
+
     let socket = new WebSocket("ws://localhost:5050");
-    socket.onmessage = function(event){
-        alert("insert 되었습니다!");
+    socket.onmessage = function(event){ //서버에서 데이터를 받으면 
+        console.log(event.data)
+        if(event.data==1){ //데이터 내용이 1이면 
+            alert("insert 되었습니다!"); 
+            location.href = "/call_cam"; //렌더링 
+        }
     }
     </script>
 

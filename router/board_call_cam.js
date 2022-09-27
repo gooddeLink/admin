@@ -12,6 +12,27 @@ const connection = mysql.createConnection(dbconfig);
 // const send_message = require('../server/js/send_msg.js');
 const { sendVerificationSMS } = require("../server/js/send_msg.js");
 
+// websocket
+var socketflag = 0; //insert 되었는지 여부 확인 flag
+const WebSocket = require('ws');
+
+const socket = new WebSocket.Server({
+  port : 5050
+})
+
+socket.on('connection', (ws, req)=>{
+    ws.interval = setInterval(()=>{
+      if(ws.readyState!=ws.OPEN){ 
+        return;
+      }
+      //console.log(socketflag); 
+      ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
+      if (socketflag==1){ 
+        socketflag=0 //다시 되돌림
+      }
+    },3000); //3초마다 실행 
+})
+
 //고객 정보
 var user={};
 let call_d;
@@ -306,29 +327,12 @@ router.post('/call_cam/message/:id/locsubmit', (req, res)=>{
     const sql = "UPDATE LC_call_cam SET sLat = ?, sLong = ?, sAddr = ?, loc_exp = ? WHERE userID = ?";
     connection.query(sql,[req.body.lat, req.body.lon, req.body.loc, req.body.text, req.params.id],(err,result,fields)=>{
         if(err) throw err;
-
-        //axios.get('http://localhost:5000/call');
-         res.redirect('/call'); //랜더링 문제 해결해야 함!
+        
 
     })
     
-    // res.redirect('/call_cam');//500 내부서버 오류 해결
 });
 
-// //data 받기
-// router.post('/call/test/:id',(req,res)=>{
-//     console.log(req.body.dataUrl);
-//     //callid req.params.id로 받아와야함
-//     //req.body
-//     const sql = "UPDATE g_call SET imgUrl = ?, imgExplain = ? WHERE callID = ?";
-//     connection.query(sql,[req.body.dataUrl, req.body.text, req.params.id],(err,result,fields)=>{
-//         if(err) throw err;
-//         res.redirect('/call');
-//     })
-//     // res.send(`<script>
-//     //             location.href='http://localhost:8080/test1';
-//     //         </script>`)
-// })
 
 // 이미지 받기 
 router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
@@ -338,8 +342,7 @@ router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
         const value = [[req.params.id, result[0].cPhone, result[0].conID, result[0].cpID, req.body.dataUrl, req.body.text]]
         connection.query(sql,[value],(err,result,fields)=>{
             if(err) throw err;
-            
-            res.redirect('/call_cam');//500 내부서버 오류 해결
+            socketflag = 1; // 데이터가 insert되면 socketflag를 1로 바꿔줌
         })
     });
 });
