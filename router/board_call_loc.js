@@ -300,18 +300,6 @@ router.get('/auth', (req, res) => {
     });
 })
 
-var link = 'http://localhost:3010/call_loc';
-    
-function componentDidMount(){
-    var interval = setInterval(function(){
-        
-        //location.href = link;
-        
-    },5000);//검사 주기 5초
-}
-
-componentDidMount();
-
 // 위도, 경도 받기
 router.post('/call_loc/message/:id/locsubmit', (req, res)=>{
     //정보들 받아와서 insert 진행해야함
@@ -320,12 +308,6 @@ router.post('/call_loc/message/:id/locsubmit', (req, res)=>{
         const value = [[req.params.id,result[0].cPhone,result[0].conID,result[0].cpID,req.body.lat,req.body.lon,req.body.loc,req.body.text]];
         connection.query(sql,[value], (err,result,fields)=>{
             if(err) throw err;
-            res.write(`<script>
-                        alert('success');
-                        console.log('success');
-                        window.location.href = ${link};
-                    </script>`
-                    );
         })
     });
 });

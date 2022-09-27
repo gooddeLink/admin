@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Tables are the backbone of almost all web applications.">
     <meta name="msapplication-tap-highlight" content="no">
+    <script src="/socket.io/socket.io.js"></script>
     <!--
     =========================================================
     * ArchitectUI HTML Theme Dashboard - v1.0.0
@@ -526,6 +527,7 @@
             }
         }
     }
+    
     let socket = new WebSocket("ws://localhost:5050");
     socket.onmessage = function(event){
         alert("insert 되었습니다!");
