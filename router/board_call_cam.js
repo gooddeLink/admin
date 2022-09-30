@@ -8,30 +8,26 @@ const mysql = require('mysql');
 const dbconfig = require('../config/database.js');//db router
 const connection = mysql.createConnection(dbconfig);
 
-//메세지 전송 기능 모듈
-// const send_message = require('../server/js/send_msg.js');
-const { sendVerificationSMS } = require("../server/js/send_msg.js");
+// // websocket
+// var socketflag = 0; //insert 되었는지 여부 확인 flag
+// const WebSocket = require('ws');
 
-// websocket
-var socketflag = 0; //insert 되었는지 여부 확인 flag
-const WebSocket = require('ws');
+// const socket = new WebSocket.Server({
+//     port : 5050
+// })
 
-const socket = new WebSocket.Server({
-  port : 5050
-})
-
-socket.on('connection', (ws, req)=>{
-    ws.interval = setInterval(()=>{
-      if(ws.readyState!=ws.OPEN){ 
-        return;
-      }
-      //console.log(socketflag); 
-      ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
-      if (socketflag==1){ 
-        socketflag=0 //다시 되돌림
-      }
-    },3000); //3초마다 실행 
-})
+// socket.on('connection', (ws, req)=>{
+//     ws.interval = setInterval(()=>{
+//         if(ws.readyState!=ws.OPEN){ 
+//             return;
+//         }
+//     //console.log(socketflag); 
+//     ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
+//         if (socketflag==1){ 
+//             socketflag=0 //다시 되돌림
+//         }
+//     },3000); //3초마다 실행 
+// })
 
 //고객 정보
 var user={};

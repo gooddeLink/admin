@@ -8,23 +8,39 @@ const mysql = require('mysql');
 const dbconfig = require('../config/database.js');//db router
 const connection = mysql.createConnection(dbconfig);
 
-//메세지 전송 기능 모듈
-// const send_message = require('../server/js/send_msg.js');
-const { sendVerificationSMS } = require("../server/js/send_msg.js");
-
 //고객 정보
 var user={};
 let call_d;
 let call_cons_d;
 let filter_cons_name = "ALL";//filter기능 사용할 상담원 id 저장
 
+// websocket
+var socketflag = 0;//insert 되었는지 여부 확인 flag
+// const WebSocket = require('ws');
+
+// module.exports = (socketPort) =>{
+//     console.log("insert")
+//     const socket = new WebSocket.Server({port: socketPort});
+    
+//     socket.on('connection', (ws, req)=>{
+//         ws.interval = setInterval(()=>{
+//             if(ws.readyState!=ws.OPEN){ 
+//                 return;
+//             }
+//         //console.log(socketflag); 
+//         ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
+//             if (socketflag==1){ 
+//                 socketflag=0 //다시 되돌림
+//             }
+//         },3000); //3초마다 실행 
+//     })
+// }
 
 //새로운 user.FLAG
 //filter기능 이용 후 call정보 update(submit)시 filter 후의 정보가 뜨는 것이 아니라 전체 정보가 
 //다 보임. 이를 user.FLAG를 이용하여 get에 접근했는지 안했는지로 정함 
 // 0 접근 안함, 1 접근함
 
-//로그인
 router.get('/call_loc', (req, res) => {
     //console.log(req.session.users);
     //고객정보 session으로 받아오기
@@ -308,6 +324,9 @@ router.post('/call_loc/message/:id/locsubmit', (req, res)=>{
         const value = [[req.params.id,result[0].cPhone,result[0].conID,result[0].cpID,req.body.lat,req.body.lon,req.body.loc,req.body.text]];
         connection.query(sql,[value], (err,result,fields)=>{
             if(err) throw err;
+            socketflag = 1;
+            global.socketflag = socketflag;
+            console.log("locjs:"+ socketflag);
         })
     });
 });
