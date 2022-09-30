@@ -529,15 +529,16 @@
             }
         }
     }
+    
     //socket 
-
     let socket = new WebSocket("ws://localhost:5050");
     socket.onmessage = function(event){ //서버에서 데이터를 받으면 
         console.log(event.data)
-        if(event.data==1){ //데이터 내용이 1이면 
-            alert("insert 되었습니다!"); 
-            location.href = "/call_cam"; //렌더링 
-        }
+        alert("insert 되었습니다!"); 
+        // if(event.data==1){ //데이터 내용이 1이면 
+        //     alert("insert 되었습니다!"); 
+        //     location.href = "/call_cam"; //렌더링 
+        // }
     }
     </script>
 
