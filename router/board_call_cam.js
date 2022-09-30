@@ -35,6 +35,8 @@ let call_d;
 let call_cons_d;
 let filter_cons_name = "ALL";//filter기능 사용할 상담원 id 저장
 
+var socketflag_cam = 0; //insert 되었는지 여부 확인 flag
+global.socketflag_cam = socketflag_cam;
 
 //새로운 user.FLAG
 //filter기능 이용 후 call정보 update(submit)시 filter 후의 정보가 뜨는 것이 아니라 전체 정보가 
@@ -338,7 +340,9 @@ router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
         const value = [[req.params.id, result[0].cPhone, result[0].conID, result[0].cpID, req.body.dataUrl, req.body.text]]
         connection.query(sql,[value],(err,result,fields)=>{
             if(err) throw err;
-            socketflag = 1; // 데이터가 insert되면 socketflag를 1로 바꿔줌
+            socketflag_cam = 1; // 데이터가 insert되면 socketflag를 1로 바꿔줌
+            global.socketflag_cam = socketflag_cam;
+            console.log("camjs:"+ socketflag_cam);
         })
     });
 });

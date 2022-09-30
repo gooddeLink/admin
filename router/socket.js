@@ -12,14 +12,26 @@ module.exports = (socketPort) =>{
             if(ws.readyState!=ws.OPEN){ 
                 return;
             }
-        console.log(global.socketflag);
+            console.log("loc: "+global.socketflag);
+            console.log("cam: "+global.socketflag_cam);
         
-        ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
-            if (socketflag==1){ 
-                socketflag=0 //다시 되돌림
-                global.socketflag=socketflag;
+            if(socketflag == 1){
+                ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
+                if (socketflag==1){ 
+                    socketflag=0 //다시 되돌림
+                    global.socketflag=socketflag;
+                }
+            }
+            if(socketflag_cam == 1){
+                ws.send(socketflag_cam); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
+                if(socketflag_cam == 1){
+                    socketflag_cam=0 //다시 되돌림
+                    global.socketflag_cam=socketflag_cam;
+                }
             }
         },3000); //3초마다 실행 
+
+        
     })
     
     // socket.on('connection', (ws, req)=>{
