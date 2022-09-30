@@ -16,6 +16,7 @@ let filter_cons_name = "ALL";//filter기능 사용할 상담원 id 저장
 
 // websocket
 var socketflag = 0;//insert 되었는지 여부 확인 flag
+global.socketflag = socketflag;
 // const WebSocket = require('ws');
 
 // module.exports = (socketPort) =>{
