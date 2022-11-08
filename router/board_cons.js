@@ -33,7 +33,7 @@ router.get('/company/cons', (req, res) => {
                 connection.query(sql,(err, result,field)=>{
                     cons_d = result
                     //filtering을 위한 회사 정보 받아오기, cons_com_d
-                    const sql_com = 'SELECT * FROM LC_company';
+                    const sql_com = 'SELECT * FROM LC_company ORDER BY adddate DESC ';
                     connection.query(sql_com, function(error, result){
                         if(error) throw error;
                         cons_com_d = result;
@@ -58,7 +58,7 @@ router.get('/company/cons', (req, res) => {
                 connection.query(sql,(err, result,field)=>{
                     cons_d = result
                     //filtering을 위한 회사 정보 받아오기, cons_com_d
-                    const sql_com = 'SELECT * FROM LC_company';
+                    const sql_com = 'SELECT * FROM LC_company ORDER BY adddate DESC';
                     connection.query(sql_com, function(error, result){
                         if(error) throw error;
                         cons_com_d = result;
@@ -79,7 +79,7 @@ router.get('/company/cons', (req, res) => {
         if(user.AUTH==2){ 
             //companyadmin : 해당 회사만 노출
             //crud 기능 다 됨 
-            sql = "SELECT * FROM LC_consultant WHERE cpID = ?";
+            sql = "SELECT * FROM LC_consultant WHERE cpID = ? ORDER BY adddate DESC";
             connection.query(sql,user.CP,(err, result,field)=>{
                 cons_d = result
                 res.render('consultant',{
@@ -93,7 +93,7 @@ router.get('/company/cons', (req, res) => {
         }else if (user.AUTH === 3){ 
             //consultant : 자신만 노출
             //create, delete 안됨, edit 됨 
-            sql = "SELECT * FROM LC_consultant WHERE conID = ? and cpID = ? ";
+            sql = "SELECT * FROM LC_consultant WHERE conID = ? and cpID = ? ORDER BY adddate DESC";
             connection.query(sql,[user.ID,user.CP],(err, result,field)=>{
                 cons_d = result;
                 res.render('consultant',{
