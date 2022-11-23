@@ -8,26 +8,9 @@ const mysql = require('mysql');
 const dbconfig = require('../config/database.js');//db router
 const connection = mysql.createConnection(dbconfig);
 
-// // websocket
-// var socketflag = 0; //insert 되었는지 여부 확인 flag
-// const WebSocket = require('ws');
 
-// const socket = new WebSocket.Server({
-//     port : 5050
-// })
-
-// socket.on('connection', (ws, req)=>{
-//     ws.interval = setInterval(()=>{
-//         if(ws.readyState!=ws.OPEN){ 
-//             return;
-//         }
-//     //console.log(socketflag); 
-//     ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
-//         if (socketflag==1){ 
-//             socketflag=0 //다시 되돌림
-//         }
-//     },3000); //3초마다 실행 
-// })
+//메세지 전송 기능 모듈
+const { sendVerificationSMS } = require("../server/js/send_msg.js");
 
 //고객 정보
 var user={};
@@ -307,53 +290,36 @@ router.post('/call_cam/filter',(req,res)=>{
 //메세지 전송 기능
 //res,req는 왜 안될까? ==> (req,res) => {(req,res)} 형태로 존재하게 됨 그래서 작동 안함
 // router.get('/call/message/:id',sendVerificationSMS,);
-// router.post('/call/message/:id',sendVerificationSMS,);
-
-//auth 데이터 불러오기
-router.get('/auth', (req, res) => {
-    const sql = "SELECT * FROM g_auth";
-    connection.query(sql,(err, result,field)=>{
-        if(err) throw err;
-        // console.log(result);
-        res.render('auth',{accessor : user, auth:result});        
-    });
-})
+router.post('/call_cam/message/:id/:tp',sendVerificationSMS,);
 
 // 위도, 경도 받기
-router.post('/call_cam/message/:id/locsubmit', (req, res)=>{
+router.post('/call_cam/:id/submit', (req, res)=>{
     console.log(req.body);
-    const sql = "UPDATE LC_call_cam SET sLat = ?, sLong = ?, sAddr = ?, cam_exp = ? WHERE userID = ?";
-    connection.query(sql,[req.body.lat, req.body.lon, req.body.loc, req.body.text, req.params.id],(err,result,fields)=>{
-        if(err) throw err;
-        
-
-    })
-    
-});
-
-
-// 이미지 받기 
-router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
-    console.log(req.body.dataUrl);
     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
-        const sql = "INSERT INTO LC_call_cam (userID, cPhone, conID, cpID, cam_img, cam_img_exp) VALUES ?";
-        const value = [[req.params.id, result[0].cPhone, result[0].conID, result[0].cpID, req.body.dataUrl, req.body.text]]
+        const sql = "INSERT INTO LC_call_cam  (userID, cPhone, conID, cpID, sLat, sLong , sAddr , cam_exp , type) VALUES ? ";
+        const value = [[req.params.id,result[0].cPhone, result[0].conID, result[0].cpID, req.body.lat, req.body.lon, req.body.loc, req.body.text, req.body.type]];
         connection.query(sql,[value],(err,result,fields)=>{
             if(err) throw err;
-            socketflag_cam = 1; // 데이터가 insert되면 socketflag를 1로 바꿔줌
+            socketflag_cam = 1;
             global.socketflag_cam = socketflag_cam;
             console.log("camjs:"+ socketflag_cam);
         })
     });
 });
 
-router.post('/call_cam/message/:id/textsubmit', (req, res)=>{
-    console.log(req.body.text);
-    const sql = "UPDATE LC_call_cam SET cam_exp = ? WHERE userID = ?";
-    connection.query(sql,[req.body.text, req.params.id],(err,result,fields)=>{
-        if(err) throw err;
-        // res.redirect('/call');//500 내부서버 오류 해결
+// router.post('/call_cam/message/:id/imgsubmit', (req, res)=>{
+//     console.log(req.body);
+//     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
+//         const sql = "INSERT INTO LC_call_cam (userID, cPhone, conID, cpID, cam_img, cam_img_exp) VALUES ?";
+//         const value = [[req.params.id, result[0].cPhone, result[0].conID, result[0].cpID, req.body.dataUrl, req.body.text]]
+//         connection.query(sql,[value],(err,result,fields)=>{
+//             if(err) throw err;
+//             socketflag_cam = 1; // 데이터가 insert되면 socketflag를 1로 바꿔줌
+//             global.socketflag_cam = socketflag_cam;
+//             console.log("camjs:"+ socketflag_cam);
+//         })
+//     });
+// });
 
-    })
-})
+
 module.exports = router;

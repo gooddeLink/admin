@@ -17,25 +17,6 @@ let filter_cons_name = "ALL";//filter기능 사용할 상담원 id 저장
 // websocket
 var socketflag = 0;//insert 되었는지 여부 확인 flag
 global.socketflag = socketflag;
-// const WebSocket = require('ws');
-
-// module.exports = (socketPort) =>{
-//     console.log("insert")
-//     const socket = new WebSocket.Server({port: socketPort});
-    
-//     socket.on('connection', (ws, req)=>{
-//         ws.interval = setInterval(()=>{
-//             if(ws.readyState!=ws.OPEN){ 
-//                 return;
-//             }
-//         //console.log(socketflag); 
-//         ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
-//             if (socketflag==1){ 
-//                 socketflag=0 //다시 되돌림
-//             }
-//         },3000); //3초마다 실행 
-//     })
-// }
 
 //새로운 user.FLAG
 //filter기능 이용 후 call정보 update(submit)시 filter 후의 정보가 뜨는 것이 아니라 전체 정보가 
@@ -308,17 +289,17 @@ router.post('/call_loc/filter',(req,res)=>{
 // router.post('/call/message/:id',sendVerificationSMS,);
 
 //auth 데이터 불러오기
-router.get('/auth', (req, res) => {
-    const sql = "SELECT * FROM LC_auth";
-    connection.query(sql,(err, result,field)=>{
-        if(err) throw err;
-        // console.log(result);
-        res.render('auth',{accessor : user, auth:result});        
-    });
-})
+// router.get('/auth', (req, res) => {
+//     const sql = "SELECT * FROM LC_auth";
+//     connection.query(sql,(err, result,field)=>{
+//         if(err) throw err;
+//         // console.log(result);
+//         res.render('auth',{accessor : user, auth:result});        
+//     });
+// })
 
-// 위도, 경도 받기
-router.post('/call_loc/message/:id/locsubmit', (req, res)=>{
+// user 정보 받기 위도, 경도 받기
+router.post('/call_loc/:id/submit', (req, res)=>{
     //정보들 받아와서 insert 진행해야함
     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
         const sql = "INSERT INTO LC_call_loc (userID, cPhone, conID, cpID, sLat, sLong, sAddr, loc_exp ) VALUES ?";
@@ -332,23 +313,43 @@ router.post('/call_loc/message/:id/locsubmit', (req, res)=>{
     });
 });
 
-// 이미지 받기 
-router.post('/call_loc/message/:id/imgsubmit', (req, res)=>{
-    console.log(req.body.dataUrl);
-    const sql = "UPDATE LC_call_loc SET loc_img = ?, loc_img_exp = ? WHERE userID = ?";
-    connection.query(sql,[req.body.dataUrl, req.body.text, req.params.id],(err,result,fields)=>{
-        if(err) throw err;
-        // res.redirect('/call');//500 내부서버 오류 해결
+// // 이미지 받기 
+// router.post('/call_loc/message/:id/imgsubmit', (req, res)=>{
+//     console.log(req.body.dataUrl);
+//     const sql = "UPDATE LC_call_loc SET loc_img = ?, loc_img_exp = ? WHERE userID = ?";
+//     connection.query(sql,[req.body.dataUrl, req.body.text, req.params.id],(err,result,fields)=>{
+//         if(err) throw err;
+//         // res.redirect('/call');//500 내부서버 오류 해결
 
-    })
-});
+//     })
+// });
 
-router.post('/call_loc/message/:id/textsubmit', (req, res)=>{
-    console.log(req.body.text);
-    const sql = "UPDATE LC_call_loc SET locExplain = ? WHERE userID = ?";
-    connection.query(sql,[req.body.text, req.params.id],(err,result,fields)=>{
-        if(err) throw err;
-    })
-})
+// router.post('/call_loc/message/:id/textsubmit', (req, res)=>{
+//     console.log(req.body.text);
+//     const sql = "UPDATE LC_call_loc SET locExplain = ? WHERE userID = ?";
+//     connection.query(sql,[req.body.text, req.params.id],(err,result,fields)=>{
+//         if(err) throw err;
+//     })
+// })
+
+// const WebSocket = require('ws');
+
+// module.exports = (socketPort) =>{
+//     console.log("insert")
+//     const socket = new WebSocket.Server({port: socketPort});
+    
+//     socket.on('connection', (ws, req)=>{
+//         ws.interval = setInterval(()=>{
+//             if(ws.readyState!=ws.OPEN){ 
+//                 return;
+//             }
+//         //console.log(socketflag); 
+//         ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
+//             if (socketflag==1){ 
+//                 socketflag=0 //다시 되돌림
+//             }
+//         },3000); //3초마다 실행 
+//     })
+// }
 
 module.exports = router;

@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const dbconfig = require('../config/database.js');//db router
 const connection = mysql.createConnection(dbconfig);
 
-module.exports = (socketPort) =>{
+module.exports = (socketPort) =>{  
     const socket = new WebSocket.Server({port: socketPort});
 
     socket.on('connection', (ws, req)=>{
@@ -12,8 +12,8 @@ module.exports = (socketPort) =>{
             if(ws.readyState!=ws.OPEN){ 
                 return;
             }
-            console.log("loc: "+global.socketflag);
-            console.log("cam: "+global.socketflag_cam);
+            // console.log("loc: "+global.socketflag);
+            // console.log("cam: "+global.socketflag_cam);
         
             if(socketflag == 1){
                 ws.send(socketflag); //socketflag 클라이언트에 전송 (0:insert X, 1:insert O)
