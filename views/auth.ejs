@@ -153,7 +153,7 @@
                                 <li  class="mm-active" >
                                     <a href="/auth">
                                         <i class="metismenu-icon pe-7s-display2"></i>
-                                        auth
+                                        auth & disaster
                                     </a>
                                 </li>
                                 <li  class="mm-active" >
@@ -215,8 +215,8 @@
                                         </i>
                                     </div> -->
                                     <div>
-                                        <p style="font-size: 1.8rem;font-weight: 500; margin-bottom: 0;">AUTH</p>
-                                        <div class="page-title-subheading">Auth LIST</div>
+                                        <p style="font-size: 1.8rem;font-weight: 500; margin-bottom: 0;">AUTH & DISASTER</p>
+                                        <div class="page-title-subheading">Auth & Disaster LIST</div>
                                     </div>
                                 </div>
                                 <div class="page-title-actions">
@@ -275,7 +275,7 @@
                         <div class="row" style="display: flex; justify-content: center; align-items: center;">
                             <div class="col-lg-6">
                                 <div class="main-card mb-3 card">
-                                    <div class="card-body"><h5 class="card-title">All the AUTHORITY</h5>
+                                    <div class="card-body"><h5 class="card-title">All the "AUTH" AUTHORITY</h5>
                                         <table class="mb-0 table table-hover">
                                             <thead>
                                             <tr>
@@ -287,7 +287,7 @@
                                             <tbody>
                                                 <% let i =0; %>
                                                 <% auth.forEach(function(value){ %>
-                                            <tr onclick="getEdit()">
+                                            <tr>
                                                 <th scope="row"><%= ++i %></th>
                                                 <td><%= value.code %></td>
                                                 <td><%= value.cdNM %></td>
@@ -299,89 +299,34 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="create_area" id="create_area"> 
-                            <div class="tab-pane tabs-animation " id="tab-content-1" role="tabpanel">
+                                    
+                        <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                            <div class="col-lg-6">
                                 <div class="main-card mb-3 card">
-                                    <div class="card-body">
-                                        <div style="display:flex;">
-                                            <button type="button" value="" onclick="getHide()" style="border: none; background:none; ">
-                                                <span>
-                                                    <i class="pe-7s-angle-right-circle" style="font-size:2rem;"></i>
-                                                </span>
-                                            </button>
-                                            <h5 class="card-title" style="font-size: 1.5rem; margin-top: 5px;">Create new</h5>
-                                        </div>
-                                        <form class="" action="/auth" method="post" >
-                                            <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>Status</label>
-                                                <select name="select" id="exampleSelect" class="form-control">
-                                                    <option value="">1</option>
-                                                    <option value="">2</option>
-                                                    <option value="">3</option>
-                                                </select>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>Status</label>
-                                                <select name="select" id="exampleSelect" class="form-control">
-                                                    <option value="">super관리자</option>
-                                                    <option value="">관리자</option>
-                                                    <option value="">상담원</option>
-                                                </select>
-                                            </div>
-                                            <div class="position-relative row form-check">
-                                                <div class="col-sm-10 offset-sm-2">
-                                                    <button class="btn btn-secondary" style="width:440px; float:right;" onclick="getHide()">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                    <div class="card-body"><h5 class="card-title">All the "DISASTER" AUTHORITY</h5>
+                                        <table class="mb-0 table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>type_num</th>
+                                                <th>type_name</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%  i =0; %>
+                                                <% disaster.forEach(function(value){ %>
+                                            <tr>
+                                                <th scope="row"><%= ++i %></th>
+                                                <td><%= value.type_num %></td>
+                                                <td><%= value.type_name %></td>
+                                            </tr>
+                                                <% }); %>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="create_area" id="edit_area"> 
-                            <div class="tab-pane tabs-animation " id="tab-content-1" role="tabpanel">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-body">
-                                        <div style="display:flex;">
-                                            <button type="button" value="" onclick="getSave()" style="border: none; background:none; ">
-                                                <span>
-                                                    <i class="pe-7s-angle-right-circle" style="font-size:2rem;"></i>
-                                                </span>
-                                            </button>
-                                            <h5 class="card-title" style="font-size: 1.5rem; margin-top: 5px;">Edit</h5>
-                                        </div>
-                                        <form class="" action="/auth" method="post" >
-                                            <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>code</label>
-                                                <select name="select" id="exampleSelect" class="form-control">
-                                                    <option value="">1</option>
-                                                    <option value="">2</option>
-                                                    <option value="">3</option>
-                                                </select>
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>cdNM</label>
-                                                <select name="select" id="exampleSelect" class="form-control">
-                                                    <option value="">super관리자</option>
-                                                    <option value="">관리자</option>
-                                                    <option value="">상담원</option>
-                                                </select>
-                                            </div>
-                                            <div class="position-relative row form-check">
-                                                <div class="col-sm-10 offset-sm-2">
-                                                    <button class="btn btn-secondary" style="width:440px; float:right;" onclick="getSave()">Save</button>
-                                                </div>
-                                            </div>
-                                            <div class="position-relative row form-check">
-                                                <div class="col-sm-10 offset-sm-2">
-                                                    <button class="btn btn-danger" style="width:440px; float:right;">Delete</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
                     <div class="app-wrapper-footer">

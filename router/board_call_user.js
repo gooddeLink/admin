@@ -285,9 +285,26 @@ router.post('/call_user/filter',(req,res)=>{
     
 });
 
+let auth_data;
+
+//auth 데이터 불러오기
+router.get('/auth', (req, res) => {
+    const sql = "SELECT * FROM LC_auth";
+    connection.query(sql,(err, result,field)=>{
+        if(err) throw err;
+        auth_data = result;
+        const sql = "SELECT * FROM LC_disaster";
+        connection.query(sql,(err, result,field)=>{
+            if(err) throw err;
+            res.render('auth',{accessor : user, auth:auth_data, disaster: result});        
+        });
+        // console.log(result);
+    });
+})
+
 //메세지 전송 기능
 //res,req는 왜 안될까? ==> (req,res) => {(req,res)} 형태로 존재하게 됨 그래서 작동 안함
 // router.get('/call/message/:id',sendVerificationSMS,);
-router.post('/call_user/message/:id',sendVerificationSMS,);
+router.post('/call_user/message/:id/:tp',sendVerificationSMS);
 
 module.exports = router;

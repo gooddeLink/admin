@@ -137,7 +137,7 @@
                                 <li  class="mm-active" >
                                     <a href="/auth">
                                         <i class="metismenu-icon pe-7s-display2"></i>
-                                        auth
+                                        auth & disaster
                                     </a>
                                 </li>
                                 <li  class="mm-active" >
@@ -312,7 +312,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <nav class="" aria-label="Page navigation example">
                                     <ul class="pagination pagination-sm">
                                         <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
@@ -324,7 +324,7 @@
                                         <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
                                     </ul>
                                 </nav>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="create_area" id="create_area"> 
                             <div class="tab-pane tabs-animation " id="tab-content-1" role="tabpanel">
@@ -398,24 +398,12 @@
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>cPhone</label>
-                                                <input name="cPhone" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].cPhone %>">
+                                                <input name="cPhone" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].cPhone %>" readonly>
                                             </div>
-                                            <!-- <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class="">S Lat</label>
-                                                <input name="sLat" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].sLat %>">
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class="">S Long</label>
-                                                <input name="sLong" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].sLong %>">
-                                            </div> -->
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">S Addr</label>
                                                 <input name="sAddr" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].sAddr %>">
                                             </div>
-                                            <!-- <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>E Addr</label>
-                                                <input name="eAddr" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].eAddr %>">
-                                            </div> -->
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>Status</label>
                                                 <select name="status" id="exampleSelect" class="form-control" >
@@ -443,11 +431,7 @@
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">loc_img</label>
-                                                <img src = <%= call_data[0].loc_img %> style = "width:440px; ">
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class="">loc_img_Explain</label>
-                                                <input  id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].loc_img_exp %>" readonly>
+                                                <img src = "<%= call_data[0].loc_img %>" style = "width:440px; ">
                                             </div>
                                             <div class="position-relative row form-check">
                                                 <div class="col-sm-10 offset-sm-2">
