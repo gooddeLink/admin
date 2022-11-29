@@ -41,7 +41,7 @@ router.get('/call_loc', (req, res) => {
             filter_cons_name = "ALL";
             if(user.AUTH === 1){
                 //super관리자 전체 노출
-                const sql1 = "SELECT * FROM LC_call_loc";
+                const sql1 = "SELECT * FROM LC_call_loc order by addDate DESC";
                 connection.query(sql1,(err, result,field)=>{
                     if(err) throw err;
                     call_d =result;
@@ -64,7 +64,7 @@ router.get('/call_loc', (req, res) => {
             }
             else if(user.AUTH === 2){
                 //관리자 cpID call만 노출, call_d
-                const sql2 = "SELECT * FROM LC_call_loc where cpID= ? ";
+                const sql2 = "SELECT * FROM LC_call_loc where cpID= ? order by addDate DESC";
                 connection.query(sql2,[user.CP],(err, result,field)=>{
                     if(err) throw err;
                     call_d =result;
@@ -127,7 +127,7 @@ router.get('/call_loc', (req, res) => {
         
         if(user.AUTH === 3){
             //상담원 conID call만 노출
-            const sql2 = "SELECT * FROM LC_call_loc where conID= ? ";
+            const sql2 = "SELECT * FROM LC_call_loc where conID= ? order by addDate DESC";
             connection.query(sql2,[user.ID],(err, result,field)=>{
                 if(err) throw err;
                 call_d =result;
