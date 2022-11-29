@@ -286,7 +286,6 @@
                                                 <th>cPhone</th>
                                                 <th>S Addr</th>
                                                 <!-- <th>E Addr</th> -->
-                                                <th>Status</th>
                                                 <th>conID(상담원)</th>
                                                 <th>cpID(회사)</th>
                                                 <th>addDate</th>
@@ -301,10 +300,11 @@
                                                 <td class="name_num"><%= value.cPhone %></td>
                                                 <td><%= value.sAddr %></td>
                                                 <!-- <td><%= value.eAddr %></td> -->
-                                                <td><%= value.status %></td>
                                                 <td><%= value.conID %></td>
                                                 <td><%= value.cpID %></td>
-                                                <td><%= value.addDate %></td>
+                                                <!-- th 글자수 제한 -->
+                                                <!-- <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 60px;"><%= value.addDate %></td> -->
+                                                <td ><%= value.addDate %></td>
                                             </tr>
                                                 <% }); %>
                                             </tbody>
@@ -312,19 +312,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div>
-                                <nav class="" aria-label="Page navigation example">
-                                    <ul class="pagination pagination-sm">
-                                        <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                        <li class="page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-                                        <li class="page-item"><a href="javascript:void(0);" class="page-link">2</a></li>
-                                        <li class="page-item"><a href="javascript:void(0);" class="page-link">3</a></li>
-                                        <li class="page-item"><a href="javascript:void(0);" class="page-link">4</a></li>
-                                        <li class="page-item"><a href="javascript:void(0);" class="page-link">5</a></li>
-                                        <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                                    </ul>
-                                </nav>
-                            </div> -->
                         </div>
                         <div class="create_area" id="create_area"> 
                             <div class="tab-pane tabs-animation " id="tab-content-1" role="tabpanel">
@@ -495,7 +482,7 @@
     }
     
     //socket 
-    let socket = new WebSocket("ws://localhost:5050");
+    let socket = new WebSocket("ws://13.209.179.185:5050");
     socket.onmessage = function(event){ //서버에서 데이터를 받으면 
         if(event.data==1){ //데이터 내용이 1이면 
             alert("insert 되었습니다!"); 
