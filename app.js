@@ -1,5 +1,6 @@
 const http = require('http');
 const express = require('express');
+const expressWs = require('express-ws')
 const ejs = require('ejs');
 // const boardRouter = require('./router/board.js');//require이용하여 모듈을 가지고 옴, 페이지 라우터
 const board_call_user_Router = require('./router/board_call_user.js');//require이용하여 모듈을 가지고 옴, user라우터
@@ -18,6 +19,7 @@ const dbconfig = require('./config/database.js');//db router
 const connection = mysql.createConnection(dbconfig);
 
 const app = express();
+expressWs(app);
 const server = http.createServer(app);
 //const hostname = '13.125.138.249';
 const port = 3010;
