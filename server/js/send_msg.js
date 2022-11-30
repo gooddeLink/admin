@@ -18,6 +18,7 @@ module.exports = {
             //메세지 양식
             var content_msg;
             var msg;
+            var smsorlms;
 
             console.log("type: "+tp);
             
@@ -35,33 +36,17 @@ module.exports = {
                 
                 content_msg= `${sens_user_url}/${userID}`;
                 msg = "신고 url:";
+                smsorlms = "SMS";
                 
                 // const user_phone_number = tel.split("-").join(""); // SMS를 수신할 전화번호
             }else if(tp == 2){//tp == 2, loc_cam
                 var tel = req.body.cPhone;
                 var userID = req.body.userID;
                 var type = req.body.type;
-                var type_name = req.body.type_name;
-                var type_guide = req.body.guide;
-                console.log("type2: inserted");  
-                content_msg = type_guide;
-                msg = `${type_name} 대피 요령을 확인하실 수 있습니다.`;
                 
-                // const sql = "SELECT * FROM LC_disaster WHERE type_num = ?";
-                // connection.query(sql,[type],(err,result)=>{
-                //     if(err) throw err;
-                //     // result.guide
-                //     console.log("query in");  
-                    
-                //     content_msg = result[0].guide;
-                //     msg = `${result[0].type_name} 대피 요령을 확인하실 수 있습니다.`;
-
-                //     // global.content_msg = content_msg;
-                //     // global.msg = msg;
-                //     console.log(`query in ${msg} ${content_msg}`);
-                // })
-                
-                console.log(`query out ${msg} ${content_msg}`);
+                content_msg = req.body.guide;
+                msg = `${req.body.type_name} 대피 요령을 확인하실 수 있습니다.`;                
+                smsorlms = "LMS";
             }
 
             const user_phone_number = tel; // SMS를 수신할 전화번호
@@ -98,12 +83,12 @@ module.exports = {
                 "x-ncp-apigw-signature-v2": signature,
                 },
                 data: {
-                type: "SMS",
+                type: smsorlms,
                 countryCode: "82",
                 from: sens_call_number,
                 // content: `인증번호는 [${verificationCode}] 입니다.`,
                 // content: `${global.msg} ${global.content_msg}`,
-                content: `${msg} ${content_msg}`,
+                content: `${msg}\n${content_msg}`,
                 messages: [{ to: `${user_phone_number}`}],
                 },
             });   
