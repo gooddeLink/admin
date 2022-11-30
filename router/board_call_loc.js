@@ -301,8 +301,11 @@ router.post('/call_loc/filter',(req,res)=>{
 router.post('/call_loc/:id/submit', (req, res)=>{
     //정보들 받아와서 insert 진행해야함
     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
+        let loc_name = req.body.loc;
+        let replaced_loc_name = loc_name.replace('대한민국','');
+
         const sql = "INSERT INTO LC_call_loc (userID, cPhone, conID, cpID, sLat, sLong, sAddr, loc_exp ) VALUES ?";
-        const value = [[req.params.id,result[0].cPhone,result[0].conID,result[0].cpID,req.body.lat,req.body.lon,req.body.loc,req.body.text]];
+        const value = [[req.params.id,result[0].cPhone,result[0].conID,result[0].cpID,req.body.lat,req.body.lon,replaced_loc_name,req.body.text]];
         connection.query(sql,[value], (err,result,fields)=>{
             if(err) throw err;
             socketflag = 1;

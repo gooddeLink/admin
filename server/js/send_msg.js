@@ -43,7 +43,7 @@ module.exports = {
                 var tel = req.body.cPhone;
                 var userID = req.body.userID;
                 var type = req.body.type;
-                
+
                 content_msg = req.body.guide;
                 msg = `${req.body.type_name} 대피 요령을 확인하실 수 있습니다.`;                
                 smsorlms = "LMS";
@@ -88,7 +88,7 @@ module.exports = {
                 from: sens_call_number,
                 // content: `인증번호는 [${verificationCode}] 입니다.`,
                 // content: `${global.msg} ${global.content_msg}`,
-                content: `${msg}\n${content_msg}`,
+                content: `${msg} ${content_msg}`,
                 messages: [{ to: `${user_phone_number}`}],
                 },
             });   

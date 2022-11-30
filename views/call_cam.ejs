@@ -293,7 +293,7 @@
                                                 <th>유형</th>
                                                 <th>S Addr</th>
                                                 <!-- <th>E Addr</th>/ -->
-                                                <th>Status</th>
+                                                <!-- <th>Status</th> -->
                                                 <th>conID(상담원)</th>
                                                 <th>cpID(회사)</th>
                                                 <th>addDate</th>
@@ -306,10 +306,10 @@
                                                 <th scope="row"><%= ++i %></th>
                                                 <td><%= value.userID %></td>
                                                 <td class="name_num"><%= value.cPhone %></td>
-                                                <td><%= value.type %></td>
+                                                <td>(<%= value.type %>) <%= value.type_name %></td>
                                                 <td><%= value.sAddr %></td>
-                                                <!-- <td><%= value.eAddr %></td>/ -->
-                                                <td><%= value.status %></td>
+                                                <!-- <td><%= value.eAddr %></td> -->
+                                                <!-- <td><%= value.status %></td> -->
                                                 <td><%= value.conID %></td>
                                                 <td><%= value.cpID %></td>
                                                 <td><%= value.addDate %></td>
@@ -409,7 +409,7 @@
                                         <form class="" action="/call_cam/update/<%= call_data[0].userID %>" method="post" >
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>TYPE</label>
-                                                <input name="cPhone" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].type %>" readonly>
+                                                <input name="cPhone" id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].type %> <%= call_data[0].type_name %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class=""><span style="color: #4268F6;">*</span>userID</label>
@@ -433,11 +433,11 @@
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">addDate</label>
-                                                <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].addDate %>" readonly>
+                                                <input  id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].addDate %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">camExplain</label>
-                                                <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].cam_exp %>" readonly>
+                                                <input  id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].cam_exp %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">img</label>
