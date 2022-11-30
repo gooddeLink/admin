@@ -15,7 +15,10 @@ module.exports = {
             // const { tel } = req.body;
             // var tel = "01046141099";
             var tp = req.params.tp;
+            //메세지 양식
             var content_msg;
+            var msg;
+
             console.log("type: "+tp);
             
             // 환경 변수
@@ -29,31 +32,42 @@ module.exports = {
                 console.log("inserted");             
                 var tel = req.body.cPhone;
                 var userID = req.body.userID;
+                
                 content_msg= `${sens_user_url}/${userID}`;
+                msg = "신고 url:";
+                
                 // const user_phone_number = tel.split("-").join(""); // SMS를 수신할 전화번호
-            }else{//tp == 2, loc_cam
+            }else if(tp == 2){//tp == 2, loc_cam
                 var tel = req.body.cPhone;
                 var userID = req.body.userID;
                 var type = req.body.type;
+                var type_name = req.body.type_name;
+                var type_guide = req.body.guide;
+                console.log("type2: inserted");  
+                content_msg = type_guide;
+                msg = `${type_name} 대피 요령을 확인하실 수 있습니다.`;
+                
+                // const sql = "SELECT * FROM LC_disaster WHERE type_num = ?";
+                // connection.query(sql,[type],(err,result)=>{
+                //     if(err) throw err;
+                //     // result.guide
+                //     console.log("query in");  
+                    
+                //     content_msg = result[0].guide;
+                //     msg = `${result[0].type_name} 대피 요령을 확인하실 수 있습니다.`;
 
-                //connection disaster 행동 요령 저장 필요함
-                connection.query('SELECT * FROM LC_disaster WHERE type_num = ?',[type],function(err,result){
-                    // result.guide
-                    content_msg = result.guide;
-                })
+                //     // global.content_msg = content_msg;
+                //     // global.msg = msg;
+                //     console.log(`query in ${msg} ${content_msg}`);
+                // })
+                
+                console.log(`query out ${msg} ${content_msg}`);
             }
 
             const user_phone_number = tel; // SMS를 수신할 전화번호
             // const verificationCode = createRandomNumber(6); // 인증 코드 (6자리 숫자)
             const date = Date.now().toString(); // 날짜 string
-        
-            // // 환경 변수
-            // const sens_service_id = sens.serviceId;
-            // const sens_access_key = sens.accessKey;
-            // const sens_secret_key = sens.secretKey;
-            // const sens_call_number = sens.callNumber;
-            // const sens_user_url = sens.userUrl;
-            
+
             // url 관련 변수 선언
             const method = "POST";
             const space = " ";
@@ -73,7 +87,7 @@ module.exports = {
             const hash = hmac.finalize();
             const signature = hash.toString(CryptoJS.enc.Base64);
         
-            //sens 서버로 요청 전송
+            // sens 서버로 요청 전송
             const smsRes = await axios({
                 method: method,
                 url: url,
@@ -88,30 +102,33 @@ module.exports = {
                 countryCode: "82",
                 from: sens_call_number,
                 // content: `인증번호는 [${verificationCode}] 입니다.`,
-                content: `${content_msg}`,
+                // content: `${global.msg} ${global.content_msg}`,
+                content: `${msg} ${content_msg}`,
                 messages: [{ to: `${user_phone_number}`}],
                 },
-            });    
-            // const smsRes = await axios({
-            //     method: method,
-            //     url: url,
-            //     headers: {
-            //     "Content-type": "application/json; charset=utf-8",
-            //     "x-ncp-iam-access-key": sens_access_key,
-            //     "x-ncp-apigw-timestamp": date,
-            //     "x-ncp-apigw-signature-v2": signature,
-            //     },
-            //     data: {
-            //     type: "SMS",
-            //     countryCode: "82",
-            //     from: sens_call_number,
-            //     // content: `인증번호는 [${verificationCode}] 입니다.`,
-            //     content: `${sens_user_url}/${userID}`,
-            //     messages: [{ to: `${user_phone_number}`}],
-            //     },
-            // });
-            
+            });   
+
+            /*
+            const smsRes = await axios({
+                method: method,
+                url: url,
+                headers: {
+                "Content-type": "application/json; charset=utf-8",
+                "x-ncp-iam-access-key": sens_access_key,
+                "x-ncp-apigw-timestamp": date,
+                "x-ncp-apigw-signature-v2": signature,
+                },
+                data: {
+                type: "SMS",
+                countryCode: "82",
+                from: sens_call_number,
+                // content: `인증번호는 [${verificationCode}] 입니다.`,
+                content: `${sens_user_url}/${userID}`,
+                messages: [{ to: `${user_phone_number}`}],
+                },
+            });*/
             console.log("response", smsRes.data);
+
             return res.send(`<script>
                                 alert('${user_phone_number} 메세지 전송 성공');
                                 location.href='/call_user';
