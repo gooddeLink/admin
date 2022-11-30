@@ -123,7 +123,6 @@ router.get('/call_loc', (req, res) => {
                 })
             }
         }
-
         
         if(user.AUTH === 3){
             //상담원 conID call만 노출
