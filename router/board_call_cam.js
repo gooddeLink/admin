@@ -291,31 +291,22 @@ router.post('/call_cam/filter',(req,res)=>{
 // router.get('/call/message/:id',sendVerificationSMS,);
 router.post('/call_cam/message/:id/:tp',sendVerificationSMS,);
 
-let guide;
-let type_name;
-
 // 위도, 경도 받기
 router.post('/call_cam/:id/submit', (req, res)=>{
-    console.log("body"+req.body);
     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
-        console.log(0);
 
         //재난 유형 추가
         connection.query('SELECT * FROM LC_disaster WHERE type_num = ?',[req.body.type],(err,result1)=>{
-            
-            console.log(result1);
-            console.log(1);
-            // guide = result1[0].guide;
-            guide = 1;
+            let guide;
+            let type_name;            
+            guide = result1[0].guide;
             type_name = result1[0].type_name;
 
             const value = [[req.params.id,result[0].cPhone, result[0].conID, result[0].cpID, req.body.lat, 
                             req.body.lon, req.body.loc, req.body.text, req.body.type, type_name, guide]];
-            console.log("value: "+value);
             const sql = "INSERT INTO LC_call_cam  (userID, cPhone, conID, cpID, sLat, sLong , sAddr , cam_exp , type, type_name, guide) VALUES ? ";
             connection.query(sql,[value],(err,result,fields)=>{
                 if(err) throw err;
-                console.log(2);
                 socketflag_cam = 1;
                 global.socketflag_cam = socketflag_cam;
                 console.log("camjs:"+ socketflag_cam);

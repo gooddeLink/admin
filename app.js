@@ -1,6 +1,6 @@
 const http = require('http');
 const express = require('express');
-const expressWs = require('express-ws')
+const expressWs = require('express-ws');
 const ejs = require('ejs');
 // const boardRouter = require('./router/board.js');//require이용하여 모듈을 가지고 옴, 페이지 라우터
 const board_call_user_Router = require('./router/board_call_user.js');//require이용하여 모듈을 가지고 옴, user라우터
