@@ -294,6 +294,8 @@ router.post('/call_cam/message/:id/:tp',sendVerificationSMS,);
 // 위도, 경도 받기
 router.post('/call_cam/:id/submit', (req, res)=>{
     connection.query('SELECT * FROM LC_user WHERE userID = ?',[req.params.id], function(error, result){
+        let loc_name = req.body.loc;
+        let replaced_loc_name = loc_name.replace('대한민국','');
 
         //재난 유형 추가
         connection.query('SELECT * FROM LC_disaster WHERE type_num = ?',[req.body.type],(err,result1)=>{
@@ -303,7 +305,7 @@ router.post('/call_cam/:id/submit', (req, res)=>{
             type_name = result1[0].type_name;
 
             const value = [[req.params.id,result[0].cPhone, result[0].conID, result[0].cpID, req.body.lat, 
-                            req.body.lon, req.body.loc, req.body.text, req.body.type, type_name, guide]];
+                            req.body.lon, replaced_loc_name, req.body.text, req.body.type, type_name, guide]];
             const sql = "INSERT INTO LC_call_cam  (userID, cPhone, conID, cpID, sLat, sLong , sAddr , cam_exp , type, type_name, guide) VALUES ? ";
             connection.query(sql,[value],(err,result,fields)=>{
                 if(err) throw err;

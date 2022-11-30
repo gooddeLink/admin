@@ -284,7 +284,8 @@
                                                 <th>#</th>
                                                 <th>userID</th>
                                                 <th>cPhone</th>
-                                                <th>S Addr</th>
+                                                <th>location</th>
+                                                <th>불편내용</th>
                                                 <!-- <th>E Addr</th> -->
                                                 <th>conID(상담원)</th>
                                                 <th>cpID(회사)</th>
@@ -299,12 +300,14 @@
                                                 <td><%= value.userID %></td>
                                                 <td class="name_num"><%= value.cPhone %></td>
                                                 <td><%= value.sAddr %></td>
+                                                <td><%= value.loc_exp%></td>
                                                 <!-- <td><%= value.eAddr %></td> -->
+                                                <td ><%= value.addDate %></td>
                                                 <td><%= value.conID %></td>
                                                 <td><%= value.cpID %></td>
+                                                <td ><%= value.addDate %></td>
                                                 <!-- th 글자수 제한 -->
                                                 <!-- <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 60px;"><%= value.addDate %></td> -->
-                                                <td ><%= value.addDate %></td>
                                             </tr>
                                                 <% }); %>
                                             </tbody>
@@ -413,7 +416,7 @@
                                                 <input  id="exampleEmail11"  type="datetime" class="form-control" value="<%= call_data[0].addDate %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
-                                                <label for="exampleEmail11" class="">locExplain</label>
+                                                <label for="exampleEmail11" class="">불편내용</label>
                                                 <input  id="exampleEmail11"  type="text" class="form-control" value="<%= call_data[0].loc_exp %>" readonly>
                                             </div>
                                             <div class="position-relative form-group">
