@@ -1,21 +1,21 @@
-<span style="color:blue"># admin</span>
+# admin
 
-**<span style="color:indigo">1. 로그인 (/login)</span>**<br>
+##1. 로그인 (/login)</span><br>
 : 해당 아이디로 로그인 진행<br>
 
-**<span style="color:indigo">2. user (/call_user)</span>**<br>
+##2. user (/call_user)</span><br>
 &nbsp;&nbsp;&nbsp;-1. 모든 고객 정보(해당 company) 확인 가능<br>
 &nbsp;&nbsp;&nbsp;-2. 버튼"**+ create new**" 클릭 -> 고객(전화번호) 추가<br>
 &nbsp;&nbsp;&nbsp;-3. 생성된 userID row 클릭 -> **edit** 창 노출(call_user/:id) -> 버튼"**send Message**" 클릭 -> 고객 **사용자페이지** 전송<br>
 &nbsp;&nbsp;&nbsp;****edit** 창에서 고객 정보 수정, 삭제 가능<br>
 
-**<span style="color:indigo">3. Location(/call_loc)</span>**<br>
+##3. Location(/call_loc)</span><br>
 &nbsp;&nbsp;&nbsp;: 고객이 "**취약 이웃 위치 신고**" 시 고객 정보 **Location**에 들어옴<br>
 &nbsp;&nbsp;&nbsp;-1. 모든 고객 정보(해당 company) 확인 가능<br>
 &nbsp;&nbsp;&nbsp;-2. userID row 클릭 -> **edit** 창 노출(call_loc/:id) -> 고객 정보 확인 가능<br>
 &nbsp;&nbsp;&nbsp;****edit** 창에서 고객 정보 수정, 삭제 가능<br>
       
-**<span style="color:indigo">4. Camera(/call_cam)</span>**<br>
+##4. Camera(/call_cam)</span><br>
 &nbsp;&nbsp;&nbsp;: 고객이 "**재난 위험 사진 신고**" 시 고객 정보 **Camera**에 들어옴<br>
 &nbsp;&nbsp;&nbsp;-1. 모든 고객 정보(해당 company) 확인 가능<br>
 &nbsp;&nbsp;&nbsp;-2. userID row 클릭 -> **edit** 창 노출(call_loc/:id) <br>
