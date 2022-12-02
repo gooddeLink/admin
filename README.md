@@ -6,7 +6,7 @@
 **2. user (/call_user)**<br>
 &nbsp;&nbsp;&nbsp;-1. 모든 고객 정보(해당 company) 확인 가능<br>
 &nbsp;&nbsp;&nbsp;-2. 버튼"**+ create new**" 클릭 -> 고객(전화번호) 추가<br>
-&nbsp;&nbsp;&nbsp;-3. 생성된 userID row 클릭 -> **edit** 창 노출(call_user/:id) -> 버튼"**send Message**" 클릭 -> 고객에게 **사용자페이지** 전송<br>
+&nbsp;&nbsp;&nbsp;-3. 생성된 userID row 클릭 -> **edit** 창 노출(call_user/:id) -> 버튼"**send Message**" 클릭 -> 고객 **사용자페이지** 전송<br>
 &nbsp;&nbsp;&nbsp;****edit** 창에서 고객 정보 수정, 삭제 가능<br>
 
 **3. Location(/call_loc)**<br>
