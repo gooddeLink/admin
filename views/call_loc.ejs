@@ -304,7 +304,7 @@
                                                 <!-- <td><%= value.eAddr %></td> -->
                                                 <td><%= value.conID %></td>
                                                 <td><%= value.cpID %></td>
-                                                <td ><%= value.addDate %></td>
+                                                <td ><%= String(value.addDate).slice(0,-38) %></td>
                                                 <!-- th 글자수 제한 -->
                                                 <!-- <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 60px;"><%= value.addDate %></td> -->
                                             </tr>
