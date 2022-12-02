@@ -1,4 +1,4 @@
-# <span style="color:blue">admin</span>
+<span style="color:blue"># admin</span>
 
 **<span style="color:indigo">1. 로그인 (/login)</span>**<br>
 : 해당 아이디로 로그인 진행<br>
