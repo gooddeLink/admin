@@ -1,7 +1,8 @@
-# admin
+# admin 
+[admin_Goodde : https://admin.goodde.kr/login](https://admin.goodde.kr/login)
 
 ## 1. 로그인 (/login)<br/>
-: <span style='color: red'>해당 아이디로 로그인 진행</span>
+: 해당 아이디로 로그인 진행</span>
 <br/>
 
 ## 2. user (/call_user)<br/>
