@@ -307,7 +307,7 @@
                                                 <td><%= value.status %></td>
                                                 <td><%= value.conID %></td>
                                                 <td><%= value.cpID %></td>
-                                                <td><%= value.addDate %></td>
+                                                <td><%= String(value.addDate).slice(0,-38) %></td>
                                             </tr>
                                                 <% }); %>
                                             </tbody>
