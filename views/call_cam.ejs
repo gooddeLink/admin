@@ -441,7 +441,7 @@
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">img</label>
-                                                <img src = "<%= call_data[0].cam_img %>" style = "width:440px; ">
+                                                <img src = "<%= String(call_data[0].cam_img).slice(0,-3) %>" style = "width:440px; ">
                                             </div>
                                             <div class="position-relative row form-check">
                                                 <div class="col-sm-10 offset-sm-2">
