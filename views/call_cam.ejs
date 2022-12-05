@@ -302,7 +302,8 @@
                                             <tbody>
                                                 <% let i =0; %>
                                                 <% c_cam.forEach(function(value){ %>
-                                            <tr class="item_num" onclick="location.href='/call_cam/<%= value.userID %>'; getEdit();">
+                                                <% if (value.flood_ox === "yes") {%>
+                                            <tr class="item_num" onclick="location.href='/call_cam/<%= value.userID %>'; getEdit();" style="color:green;">
                                                 <th scope="row"><%= ++i %></th>
                                                 <td><%= value.userID %></td>
                                                 <td class="name_num"><%= value.cPhone %></td>
@@ -314,6 +315,21 @@
                                                 <td><%= value.cpID %></td>
                                                 <td><%= String(value.addDate).slice(0,-38) %></td>
                                             </tr>
+                                            <% } %>
+                                            <% if (value.flood_ox === "no")  {%>
+                                                <tr class="item_num" onclick="location.href='/call_cam/<%= value.userID %>'; getEdit();" >
+                                                    <th scope="row"><%= ++i %></th>
+                                                    <td><%= value.userID %></td>
+                                                    <td class="name_num"><%= value.cPhone %></td>
+                                                    <td>(<%= value.type %>) <%= value.type_name %></td>
+                                                    <td><%= value.sAddr %></td>
+                                                    <!-- <td><%= value.eAddr %></td> -->
+                                                    <!-- <td><%= value.status %></td> -->
+                                                    <td><%= value.conID %></td>
+                                                    <td><%= value.cpID %></td>
+                                                    <td><%= value.addDate %></td>
+                                                </tr>
+                                                <% } %>
                                                 <% }); %>
                                             </tbody>
                                         </table>
