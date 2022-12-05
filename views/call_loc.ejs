@@ -302,10 +302,9 @@
                                                 <td><%= value.sAddr %></td>
                                                 <td><%= value.loc_exp%></td>
                                                 <!-- <td><%= value.eAddr %></td> -->
-                                                <td ><%= value.addDate %></td>
                                                 <td><%= value.conID %></td>
                                                 <td><%= value.cpID %></td>
-                                                <td ><%= value.addDate %></td>
+                                                <td ><%= String(value.addDate).slice(0,-38) %></td>
                                                 <!-- th 글자수 제한 -->
                                                 <!-- <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 60px;"><%= value.addDate %></td> -->
                                             </tr>
@@ -421,7 +420,7 @@
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleEmail11" class="">loc_img</label>
-                                                <img src = "<%= call_data[0].loc_img %>" style = "width:440px; ">
+                                                <img src = "<%= String(call_data[0].loc_img).slice(0,-3) %>" style = "width:440px; ">
                                             </div>
                                             <div class="position-relative row form-check">
                                                 <div class="col-sm-10 offset-sm-2">
