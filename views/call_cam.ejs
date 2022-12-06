@@ -290,12 +290,13 @@
                                                 <th>cPhone</th>
                                                 <!-- <th>S Lat</th>
                                                 <th>S Long</th> -->
-                                                <th>유형</th>
-                                                <th>S Addr</th>
+                                                <th>재난유형</th>
+                                                <th>location</th>
                                                 <!-- <th>E Addr</th>/ -->
                                                 <!-- <th>Status</th> -->
-                                                <th>conID(상담원)</th>
-                                                <th>cpID(회사)</th>
+                                                <th>불편내용</th>
+                                                <th>상담원 ID</th>
+                                                <th>회사 ID</th>
                                                 <th>addDate</th>
                                             </tr>
                                             </thead>
@@ -309,6 +310,7 @@
                                                 <td class="name_num"><%= value.cPhone %></td>
                                                 <td>(<%= value.type %>) <%= value.type_name %></td>
                                                 <td><%= value.sAddr %></td>
+                                                <td><%= value.cam_exp %></td>
                                                 <!-- <td><%= value.eAddr %></td> -->
                                                 <!-- <td><%= value.status %></td> -->
                                                 <td><%= value.conID %></td>
@@ -316,7 +318,7 @@
                                                 <td><%= String(value.addDate).slice(0,-38) %></td>
                                             </tr>
                                             <% } %>
-                                            <% if (value.flood_ox === "no")  {%>
+                                            <% if (value.flood_ox === "no" || !value.flood_ox)  {%>
                                                 <tr class="item_num" onclick="location.href='/call_cam/<%= value.userID %>'; getEdit();" >
                                                     <th scope="row"><%= ++i %></th>
                                                     <td><%= value.userID %></td>
