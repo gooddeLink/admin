@@ -484,7 +484,7 @@
     }
     
     //socket 
-    let socket = new WebSocket("ws://13.209.179.185:5050");
+    let socket = new WebSocket("wss://13.209.179.185:5050");
     socket.onmessage = function(event){ //서버에서 데이터를 받으면 
         if(event.data==1){ //데이터 내용이 1이면 
             alert("insert 되었습니다!"); 
