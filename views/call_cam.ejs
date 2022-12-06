@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Tables are the backbone of almost all web applications.">
     <meta name="msapplication-tap-highlight" content="no">
-    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
     <!--
     =========================================================
     * ArchitectUI HTML Theme Dashboard - v1.0.0
@@ -325,6 +325,7 @@
                                                     <td class="name_num"><%= value.cPhone %></td>
                                                     <td>(<%= value.type %>) <%= value.type_name %></td>
                                                     <td><%= value.sAddr %></td>
+                                                    <td><%= value.cam_exp %></td>
                                                     <!-- <td><%= value.eAddr %></td> -->
                                                     <!-- <td><%= value.status %></td> -->
                                                     <td><%= value.conID %></td>
@@ -522,7 +523,7 @@
     }
     
     //socket 
-    let socket = new WebSocket("ws://13.209.179.185:5050");
+    let socket = new WebSocket("wss://13.209.179.185:3010");
     socket.onmessage = function(event){ //서버에서 데이터를 받으면 
         if(event.data==1){ //데이터 내용이 1이면 
             alert("insert 되었습니다!"); 
