@@ -1,7 +1,7 @@
 # 🖥admin 
-[admin_Goodde : https://admin.goodde.kr/login](https://admin.goodde.kr/login)
+<!--[admin_Goodde : https://admin.goodde.kr/login](https://admin.goodde.kr/login)
 <br/><br/>
-
+-->
 ## 1. 📌 로그인 (/login)<br/>
 : 해당 아이디로 로그인 진행
 <p align="center"><img src="https://user-images.githubusercontent.com/101400650/205231365-8f0b0301-93b3-4f95-bde8-85bc14b8e0ea.png"  width="500" ></p>
