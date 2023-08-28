@@ -2,6 +2,33 @@
 <!--[admin_Goodde : https://admin.goodde.kr/login](https://admin.goodde.kr/login)
 <br/><br/>
 -->
+
+
+## ✨위치 및 이미지 기반 웹 솔루션 - Back-end
+```git
+⚡ 2022.06 ~ 2022.12
+```
+
+&nbsp;&nbsp;&nbsp;<strong>📌 취약 이웃 위치 신고</strong> : 취약이웃(극빈층, 우울증 환자가족 등)을 인지한 주민들이 현재 위치와 사연 메시지를 쉽게 등록 <br/>
+&nbsp;&nbsp;&nbsp;<strong>📌 재난 위험 사진 신고</strong> : 이웃 주변의 재난상황(수해, 산불 등)을 인지한 주민들이 사진과 긴급 상황 메시지를 쉽게 등록<br/>
+<div align="center">
+      <img src="https://user-images.githubusercontent.com/96722691/205233542-1217caa8-d3ae-444b-ac18-47785995518a.png"  width="300" >
+</div>
+
+## Using Stacks <br/>
+```git
+📌 NodeJS, Express, MYSQL
+```
+&nbsp;&nbsp;⭐ <strong>ERD & 시스템 구성도</strong> <br />
+<div align="center">
+      <img src="https://github.com/gooddeLink/admin/assets/101400650/ebaf25a5-2e4e-4539-b7ac-72dd856d2905" width="600" >
+      <p>[ERP]</p></br>
+      <img src="https://github.com/gooddeLink/admin/assets/101400650/77367abf-76e7-42c6-9686-4534f976b9f6" width="600" >
+      <p>[시스템 구성도]</p>
+</div>
+
+<br />
+
 ## 1. 📌 로그인 (/login)<br/>
 : 해당 아이디로 로그인 진행
 <p align="center"><img src="https://user-images.githubusercontent.com/101400650/205231365-8f0b0301-93b3-4f95-bde8-85bc14b8e0ea.png"  width="500" ></p>
