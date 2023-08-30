@@ -17,16 +17,15 @@
 
 ## Using Stacks <br/>
 ```git
-📌 NodeJS, Express, MYSQL
+📌 NodeJS, Express, MYSQL, NCP SMS API
 ```
-&nbsp;&nbsp;⭐ <strong>ERD & 시스템 구성도</strong> <br />
+&nbsp;&nbsp;⭐ <strong>시스템 구성도 & ERD</strong> <br />
 <div align="center">
+      <img src="https://github.com/gooddeLink/admin/assets/101400650/cfda27fd-0bbb-49e1-860c-cb8d7d8cfa6d" width="600" >
+      <p>[시스템 구성도]</p>
       <img src="https://github.com/gooddeLink/admin/assets/101400650/ebaf25a5-2e4e-4539-b7ac-72dd856d2905" width="600" >
       <p>[ERP]</p></br>
-      <img src="https://github.com/gooddeLink/admin/assets/101400650/77367abf-76e7-42c6-9686-4534f976b9f6" width="600" >
-      <p>[시스템 구성도]</p>
 </div>
-
 <br />
 
 ## 1. 📌 로그인 (/login)<br/>
