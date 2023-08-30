@@ -21,7 +21,7 @@
 ```
 &nbsp;&nbsp;⭐ <strong>시스템 구성도 & ERD</strong> <br />
 <div align="center">
-      <img src="https://github.com/gooddeLink/admin/assets/101400650/cfda27fd-0bbb-49e1-860c-cb8d7d8cfa6d" width="600" >
+      <img src="https://github.com/gooddeLink/admin/assets/101400650/4f973600-b175-4e98-a172-4484fac07791" width="600" >
       <p>[시스템 구성도]</p>
       <img src="https://github.com/gooddeLink/admin/assets/101400650/ebaf25a5-2e4e-4539-b7ac-72dd856d2905" width="600" >
       <p>[ERP]</p></br>
