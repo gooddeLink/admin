@@ -15,6 +15,14 @@
       <img src="https://user-images.githubusercontent.com/96722691/205233542-1217caa8-d3ae-444b-ac18-47785995518a.png"  width="300" >
 </div>
 
+## WBS <br/>
+&nbsp;&nbsp;⭐ 서비스, 고객, 시스템 전체를 유기적으로 연결할 수 있는 <strong>WBS 관리체계</strong> <br />   
+<div align="center">   
+<img src="https://github.com/gooddeLink/admin/assets/101400650/16454258-8e70-4b52-a47a-3eb00a870668" >
+</div>
+<br />
+<br />
+
 ## Using Stacks <br/>
 ```git
 📌 NodeJS, Express, MYSQL, NCP SMS API
